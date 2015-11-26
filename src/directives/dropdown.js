@@ -34,8 +34,10 @@ angular.module('$strap.directives')
           // @todo?
         }
 
-        var dropdown = angular.element(buildTemplate(items).join(''));
-        dropdown.insertAfter(iElement);
+        if (iElement.next('ul.dropdown-menu').length == 0) {
+          var dropdown = angular.element(buildTemplate(items).join(''));
+          dropdown.insertAfter(iElement);
+        }
 
         // Compile dropdown-menu
         $compile(iElement.next('ul.dropdown-menu'))(scope);

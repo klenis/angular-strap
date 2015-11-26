@@ -448,8 +448,10 @@
           $timeout(function () {
             if (!angular.isArray(items)) {
             }
-            var dropdown = angular.element(buildTemplate(items).join(''));
-            dropdown.insertAfter(iElement);
+            if (iElement.next('ul.dropdown-menu').length == 0) {
+              var dropdown = angular.element(buildTemplate(items).join(''));
+              dropdown.insertAfter(iElement);
+            }
             $compile(iElement.next('ul.dropdown-menu'))(scope);
           });
           iElement.addClass('dropdown-toggle').attr('data-toggle', 'dropdown');
